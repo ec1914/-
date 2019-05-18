@@ -1,0 +1,13 @@
+select p.pname, three, four, five
+from predmet p left join (select usp.upnum, count (umark) as three
+                     from usp
+	             where usp.umark = 3
+	             group by usp.upnum) Mark3 on p.pnum = Mark3.upnum
+	       left join (select usp.upnum, count (umark) as four
+	             from usp
+	             where usp.umark = 4
+	             group by usp.upnum) Mark4 on p.pnum = Mark4.upnum
+	       left join (select usp.upnum, count (umark) as five
+	             from usp
+	             where usp.umark = 5
+	             group by usp.upnum) Mark5 on p.pnum = Mark5.upnum
